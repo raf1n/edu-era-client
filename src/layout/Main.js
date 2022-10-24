@@ -1,9 +1,12 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
+import Nav from "./Nav";
 
 const Main = () => {
   return (
     <div>
-      <h1>Main</h1>
+      <Nav></Nav>
+      <Outlet></Outlet>
     </div>
   );
 };
