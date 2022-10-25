@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
 import CheckOut from "../pages/CheckOut/CheckOut";
-import CourseDetails from "../pages/Courses/CourseDetails/CourseDetails";
+import CourseDetails from "../pages/CourseDetails/CourseDetails";
 import Courses from "../pages/Courses/Courses";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import FAQ from "../pages/FAQ/FAQ";
 import Home from "../pages/Home/Home";
 
 export const router = createBrowserRouter([
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://edu-era-server-side.vercel.app/course/${params.id}`),
         element: <CheckOut></CheckOut>,
+      },
+      {
+        path: "/faq",
+        element: <FAQ></FAQ>,
       },
     ],
   },

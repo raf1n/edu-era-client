@@ -13,13 +13,13 @@ const Courses = () => {
         explore our <br /> awesome{" "}
         <span class="underline decoration-blue-500">Courses</span>
       </h1>
-      <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start  lg:justify-evenly mt-6 lg:mt-10">
-        <div className="w-40">
+      <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start lg:justify-evenly mt-6 lg:mt-10">
+        <div className="w-52">
           {coursesCategory.map((course) => (
             <CoursesSideBar key={course.id} course={course}></CoursesSideBar>
           ))}
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-8 mt-4 lg:mt-0">
           {coursesCategory.map((course) => (
             <CoursesCards key={course.id} course={course}></CoursesCards>
           ))}

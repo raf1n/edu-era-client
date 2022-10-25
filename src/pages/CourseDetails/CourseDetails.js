@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import { FaStar, FaFilePdf } from "react-icons/fa";
+import { FaStar, FaFilePdf, FaStarHalfAlt } from "react-icons/fa";
 const CourseDetails = () => {
   const courseDetails = useLoaderData();
   const { name, img, description, mentor, rating, enrolled } = courseDetails;
@@ -44,7 +44,7 @@ const CourseDetails = () => {
                 <FaStar></FaStar>
                 <FaStar></FaStar>
                 <FaStar></FaStar>
-                <FaStar></FaStar>
+                <FaStarHalfAlt></FaStarHalfAlt>
               </p>
             </div>
             <div className="flex justify-center lg:justify-start">

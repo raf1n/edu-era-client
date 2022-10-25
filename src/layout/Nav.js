@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [user, setUser] = useState(true);
-  const [isShown, setIsShown] = useState(false);
   return (
     <div className="navbar bg-base-100 px-10">
       <div className="navbar-start">
@@ -29,7 +28,7 @@ const Nav = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to="home">Home</Link>
+              <Link to="/home">Home</Link>
             </li>
             <li tabIndex={0}>
               <Link to="/courses" className="justify-between">
@@ -45,12 +44,16 @@ const Nav = () => {
           </ul>
         </div>
         <div className="flex items-center">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/174/174675.png"
-            className="h-6 sm:h-9"
-            alt="Flowbite Logo"
-          />
-          <Link className="btn btn-ghost normal-case text-xl">Edu Era</Link>
+          <Link to="/">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/174/174675.png"
+              className="h-6 sm:h-9"
+              alt="logo"
+            />
+          </Link>
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
+            Edu Era
+          </Link>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -72,15 +75,12 @@ const Nav = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            {isShown && <small>Rahim uddin Rafin</small>}
-            <div className="avatar">
+            <div
+              className="avatar tooltip tooltip-left"
+              data-tip="Rahim Uddin Rafin"
+            >
               <div className="w-10 rounded-full">
-                <img
-                  onMouseEnter={() => setIsShown(true)}
-                  onMouseLeave={() => setIsShown(false)}
-                  src="https://placeimg.com/192/192/people"
-                  alt="avatar"
-                />
+                <img src="https://placeimg.com/192/192/people" alt="avatar" />
               </div>
             </div>
             <Link className="btn btn-sm ml-3">Log Out</Link>
