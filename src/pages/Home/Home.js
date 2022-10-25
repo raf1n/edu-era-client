@@ -5,7 +5,7 @@ const Home = () => {
     <div className="lg:flex mt-20">
       <div className="flex items-center justify-center w-full px-6 py-8 lg:h-[32rem] lg:w-1/2">
         <div className="max-w-xl">
-          <h2 className="text-2xl font-semibold text-gray-800 dark:text-white lg:text-3xl">
+          <h2 className="text-2xl font-semibold text-gray-800 dark:text-black lg:text-3xl">
             Build Your{" "}
             <span className="text-blue-600 dark:text-blue-400">Career</span>
           </h2>

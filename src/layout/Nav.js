@@ -1,4 +1,3 @@
-import { Avatar, Button, Navbar } from "flowbite-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -6,56 +5,89 @@ const Nav = () => {
   const [user, setUser] = useState(true);
   const [isShown, setIsShown] = useState(false);
   return (
-    <Navbar fluid={true} rounded={true} className="mx-24">
-      <Link to="/" className="flex">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/174/174675.png"
-          className="mr-3 h-6 sm:h-9"
-          alt="Flowbite Logo"
-        />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Edu Era
-        </span>
-      </Link>
-      <div className="flex md:order-2">
+    <div className="navbar bg-base-100 px-10">
+      <div className="navbar-start">
+        <div className="dropdown">
+          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <Link>Home</Link>
+            </li>
+            <li tabIndex={0}>
+              <Link className="justify-between">Courses</Link>
+            </li>
+            <li>
+              <Link>FAQ</Link>
+            </li>
+            <li>
+              <Link>Blog</Link>
+            </li>
+          </ul>
+        </div>
+        <div className="flex items-center">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/174/174675.png"
+            className="h-6 sm:h-9"
+            alt="Flowbite Logo"
+          />
+          <Link className="btn btn-ghost normal-case text-xl">Edu Era</Link>
+        </div>
+      </div>
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal p-0">
+          <li>
+            <Link>Home</Link>
+          </li>
+          <li tabIndex={0}>
+            <Link>Courses</Link>
+          </li>
+          <li>
+            <Link>FAQ</Link>
+          </li>
+          <li>
+            <Link>Blog</Link>
+          </li>
+        </ul>
+      </div>
+      <div className="navbar-end">
         {user ? (
           <>
-            <div className="flex md:order-2">
-              <div className="flex">
-                <Avatar
-                  className="fixed"
+            {isShown && <small>Rahim uddin Rafin</small>}
+            <div className="avatar">
+              <div className="w-10 rounded-full">
+                <img
                   onMouseEnter={() => setIsShown(true)}
                   onMouseLeave={() => setIsShown(false)}
-                  alt="User settings"
-                  img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                  rounded={true}
-                >
-                  {isShown && (
-                    <small className="text-red-900 font-bold relative right-44">
-                      Rahim Uddin Rafin
-                    </small>
-                  )}
-                </Avatar>
-                <Button color="dark" className="ml-16 p-0">
-                  log out
-                </Button>
+                  src="https://placeimg.com/192/192/people"
+                  alt="avatar"
+                />
               </div>
             </div>
+            <Link className="btn btn-sm ml-3">Login</Link>
           </>
         ) : (
-          <Button color="dark" className="p-0 mr-2">
-            Login
-          </Button>
+          <Link className="btn btn-sm ml-3">Log Out</Link>
         )}
-        <Navbar.Toggle />
       </div>
-      <Navbar.Collapse>
-        <Link to="/home">Home</Link>
-        <Link>Courses</Link>
-        <Link>Faq</Link>
-        <Link>Blog</Link>
-      </Navbar.Collapse>
-    </Navbar>
+    </div>
   );
 };
 
