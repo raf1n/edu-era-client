@@ -5,10 +5,11 @@ const CoursesSideBar = ({ course }) => {
   const { id, name } = course;
   return (
     <div>
-      {/* <button className="btn">{course.name}</button> */}
-      <ul className="menu menu-compact lg:menu-normal bg-base-100 w-48 p-2 rounded-box">
-        <li>
-          <Link to={`/course/${id}`}>{name}</Link>
+      <ul className="menu menu-compact lg:menu-normal bg-base-100 w-60 lg:w-48 p-2 ">
+        <li className="font-semibold border rounded-lg border-blue-200">
+          <Link to={`/course/${id}`}>
+            <span className="text-xl lg:text-base">{name}</span>
+          </Link>
         </li>
       </ul>
     </div>

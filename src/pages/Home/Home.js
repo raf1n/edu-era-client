@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="lg:flex mt-20">
-      <div className="flex items-center justify-center w-full px-6 py-8 lg:h-[32rem] lg:w-1/2">
+      <div className="flex items-center justify-center w-full px-6 lg:h-[32rem] lg:w-1/2">
         <div className="max-w-xl">
           <h2 className="text-2xl font-semibold text-gray-800 dark:text-black lg:text-3xl">
             Build Your{" "}
