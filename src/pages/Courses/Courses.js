@@ -7,13 +7,13 @@ const Courses = () => {
   const coursesCategory = useLoaderData();
   //   console.log(coursesCategory);
   return (
-    <div className="grid grid-cols-2 m-10">
-      <div>
+    <div className="flex justify-evenly mt-10">
+      <div className="w-40">
         {coursesCategory.map((course) => (
           <CoursesSideBar key={course.id} course={course}></CoursesSideBar>
         ))}
       </div>
-      <div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {coursesCategory.map((course) => (
           <CoursesCards key={course.id} course={course}></CoursesCards>
         ))}
