@@ -1,30 +1,29 @@
-import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
+import { Avatar, Button, Navbar } from "flowbite-react";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(true);
   const [isShown, setIsShown] = useState(false);
   return (
     <Navbar fluid={true} rounded={true} className="mx-24">
-      <Navbar.Brand href="https://flowbite.com/">
+      <Link to="/" className="flex">
         <img
-          src="https://flowbite.com/docs/images/logo.svg"
+          src="https://cdn-icons-png.flaticon.com/512/174/174675.png"
           className="mr-3 h-6 sm:h-9"
           alt="Flowbite Logo"
         />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
           Edu Era
         </span>
-      </Navbar.Brand>
+      </Link>
       <div className="flex md:order-2">
         {user ? (
           <>
-            <Dropdown
-              className="relative"
-              inline={true}
-              label={
+            <div className="flex md:order-2">
+              <div className="flex">
                 <Avatar
-                  className="lg:fixed"
+                  className="fixed"
                   onMouseEnter={() => setIsShown(true)}
                   onMouseLeave={() => setIsShown(false)}
                   alt="User settings"
@@ -32,25 +31,29 @@ const Nav = () => {
                   rounded={true}
                 >
                   {isShown && (
-                    <small className="text-red-900 font-bold absolute top-14 right-10 lg:top-2 lg:right-0 lg:-left-60">
-                      You hover over the button.
+                    <small className="text-red-900 font-bold relative right-44">
+                      Rahim Uddin Rafin
                     </small>
                   )}
                 </Avatar>
-              }
-            ></Dropdown>
-            <Button className="absolute top-2 right-1">log out</Button>
+                <Button color="dark" className="ml-16 p-0">
+                  log out
+                </Button>
+              </div>
+            </div>
           </>
         ) : (
-          <Button>Login</Button>
+          <Button color="dark" className="p-0 mr-2">
+            Login
+          </Button>
         )}
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/navbars">Home</Navbar.Link>
-        <Navbar.Link href="/navbars">Courses</Navbar.Link>
-        <Navbar.Link href="/navbars">Faq</Navbar.Link>
-        <Navbar.Link href="/navbars">Blog</Navbar.Link>
+        <Link to="/home">Home</Link>
+        <Link>Courses</Link>
+        <Link>Faq</Link>
+        <Link>Blog</Link>
       </Navbar.Collapse>
     </Navbar>
   );
