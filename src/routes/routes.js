@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
+import Courses from "../pages/Courses/Courses";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 
@@ -16,6 +17,12 @@ export const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home></Home>,
+      },
+      {
+        path: "/courses",
+        loader: () =>
+          fetch("https://edu-era-server-side.vercel.app/courses-categories"),
+        element: <Courses></Courses>,
       },
     ],
   },

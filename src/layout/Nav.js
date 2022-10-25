@@ -29,16 +29,18 @@ const Nav = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link>Home</Link>
+              <Link to="home">Home</Link>
             </li>
             <li tabIndex={0}>
-              <Link className="justify-between">Courses</Link>
+              <Link to="/courses" className="justify-between">
+                Courses
+              </Link>
             </li>
             <li>
-              <Link>FAQ</Link>
+              <Link to="/faq">FAQ</Link>
             </li>
             <li>
-              <Link>Blog</Link>
+              <Link to="/blog">Blog</Link>
             </li>
           </ul>
         </div>
@@ -54,16 +56,16 @@ const Nav = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
           <li>
-            <Link>Home</Link>
+            <Link to="/home">Home</Link>
           </li>
           <li tabIndex={0}>
-            <Link>Courses</Link>
+            <Link to="/courses">Courses</Link>
           </li>
           <li>
-            <Link>FAQ</Link>
+            <Link to="/faq">FAQ</Link>
           </li>
           <li>
-            <Link>Blog</Link>
+            <Link to="/blog">Blog</Link>
           </li>
         </ul>
       </div>
@@ -81,10 +83,10 @@ const Nav = () => {
                 />
               </div>
             </div>
-            <Link className="btn btn-sm ml-3">Login</Link>
+            <Link className="btn btn-sm ml-3">Log Out</Link>
           </>
         ) : (
-          <Link className="btn btn-sm ml-3">Log Out</Link>
+          <Link className="btn btn-sm ml-3">Login</Link>
         )}
       </div>
     </div>
