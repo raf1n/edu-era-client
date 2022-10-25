@@ -1,6 +1,8 @@
-import React from "react";
+import React, { createRef } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { FaStar, FaFilePdf, FaStarHalfAlt } from "react-icons/fa";
+import Pdf from "react-to-pdf";
+const ref = createRef();
 const CourseDetails = () => {
   const courseDetails = useLoaderData();
   const { name, img, description, mentor, rating, enrolled } = courseDetails;
@@ -9,11 +11,19 @@ const CourseDetails = () => {
     <section className="bg-white">
       <div className="container px-6 py-4 mx-auto">
         <div className="flex justify-center items-center mb-6 gap-4">
-          <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-3xl xl:text-3xl">
+          <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-3xl xl:text-3xl">
             {/* dark:text-white */}
-            Learn <span class="text-blue-500">{name}</span> From Expert <br />
+            Learn <span className="text-blue-500">{name}</span> From Expert{" "}
+            <br />
           </h1>
-          <FaFilePdf className="h-10 mt-1"></FaFilePdf>
+          <Pdf targetRef={ref} filename="course-details.pdf">
+            {({ toPdf }) => (
+              <FaFilePdf
+                onClick={toPdf}
+                className="h-10 mt-1 cursor-pointer"
+              ></FaFilePdf>
+            )}
+          </Pdf>
         </div>
         <div className="lg:-mx-6 lg:flex items-center lg:items-center">
           <img
@@ -22,7 +32,7 @@ const CourseDetails = () => {
             alt=""
           />
 
-          <div className="mt-8 lg:w-1/2 lg:px-6 lg:mt-0">
+          <div ref={ref} className="mt-8 lg:w-1/2 lg:px-6 lg:mt-0">
             <h1 className="text-2xl font-semibold text-gray-800 dark:text-black xl:text-4xl lg:w-96">
               {name}
             </h1>
