@@ -6,9 +6,8 @@ const ref = createRef();
 const CourseDetails = () => {
   const courseDetails = useLoaderData();
   const { name, img, description, mentor, rating, enrolled } = courseDetails;
-  console.log(courseDetails);
   return (
-    <section className="bg-white">
+    <section className="bg-white mb-4">
       <div className="container px-6 py-4 mx-auto">
         <div className="flex justify-center items-center mb-6 gap-4">
           <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-3xl xl:text-3xl">
@@ -41,8 +40,8 @@ const CourseDetails = () => {
               {description}
             </p>
 
-            <div className="flex justify-start items-center mt-6 gap-5 lg:gap-10">
-              <h3 className="text-lg font-medium text-blue-600 ">
+            <div className="flex flex-col lg:flex-row justify-start items-start lg:items-center mt-6 gap-5 lg:gap-10">
+              <h3 className=" text-sm lg:text-lg font-medium text-blue-600 ">
                 Mentor: <span className="text-black">{mentor}</span>
               </h3>
               <p className="text-gray-600 dark:text-black">

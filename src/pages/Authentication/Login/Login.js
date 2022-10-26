@@ -1,7 +1,54 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
+import { AuthContext } from "../../../contexts/AuthProvider";
 const Login = () => {
+  const { googleSignIn, githubSignIn, login, setLoading } =
+    useContext(AuthContext);
+  const [error, setError] = useState("");
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
+        setError("");
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setError("");
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    githubSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setError("");
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+      });
+  };
   return (
     <section className="mt-4 mb-4">
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-xl">
@@ -14,7 +61,10 @@ const Login = () => {
             Welcome !
           </p>
 
-          <Link className="flex items-center justify-center mt-3 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <Link
+            onClick={handleGoogleSignIn}
+            className="flex items-center justify-center mt-3 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
             <div className="px-4 py-2">
               <svg className="w-6 h-6" viewBox="0 0 40 40">
                 <path
@@ -40,7 +90,10 @@ const Login = () => {
               Sign in with Google
             </span>
           </Link>
-          <Link className="flex items-center justify-center mt-3 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <Link
+            onClick={handleGithubSignIn}
+            className="flex items-center justify-center mt-3 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
             <div className="px-4 py-2">
               <FaGithub className="w-6 h-6"></FaGithub>
             </div>
@@ -62,11 +115,11 @@ const Login = () => {
             <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
           </div>
 
-          <form>
+          <form onSubmit={handleSignIn}>
             <div className="mt-4">
               <label
                 className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                for="LoggingEmailAddress"
+                htmlFor="LoggingEmailAddress"
               >
                 Email Address
               </label>
@@ -82,7 +135,7 @@ const Login = () => {
               <div className="flex justify-between">
                 <label
                   className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                  for="loggingPassword"
+                  htmlFor="loggingPassword"
                 >
                   Password
                 </label>
@@ -107,6 +160,7 @@ const Login = () => {
                 Sign Up
               </button>
             </div>
+            <h1 className="text-red-600 text-center text-sm mt-2">{error}</h1>
           </form>
 
           <div className="flex items-center justify-between mt-4">

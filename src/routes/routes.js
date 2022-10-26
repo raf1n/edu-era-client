@@ -9,6 +9,7 @@ import Courses from "../pages/Courses/Courses";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import FAQ from "../pages/FAQ/FAQ";
 import Home from "../pages/Home/Home";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +41,11 @@ export const router = createBrowserRouter([
         path: "/checkout/:id",
         loader: ({ params }) =>
           fetch(`https://edu-era-server-side.vercel.app/course/${params.id}`),
-        element: <CheckOut></CheckOut>,
+        element: (
+          <PrivateRoutes>
+            <CheckOut></CheckOut>
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/faq",

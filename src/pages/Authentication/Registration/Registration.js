@@ -1,10 +1,70 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
+import { AuthContext } from "../../../contexts/AuthProvider";
+
 const Registration = () => {
+  const [error, setError] = useState("");
+  const { signUp, googleSignIn, githubSignIn, updateUserProfile } =
+    useContext(AuthContext);
   const handleRegistration = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const imageURL = form.imageURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const profile = {
+      displayName: name,
+      photoURL: imageURL,
+    };
+    signUp(email, password)
+      .then((result) => {
+        const user = result.user;
+        updateProfile(profile);
+        console.log(user);
+        form.reset();
+        setError("");
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+      });
   };
+
+  const updateProfile = (profile) => {
+    updateUserProfile(profile)
+      .then(() => {})
+      .catch((err) => {
+        setError(err.message);
+      });
+  };
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setError("");
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    githubSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setError("");
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+      });
+  };
+
   return (
     <section className="mt-2 mb-4">
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-5xl">
@@ -17,15 +77,14 @@ const Registration = () => {
         ></div>
 
         <div className="w-full px-6 py-4 md:px-8 lg:w-1/2">
-          <h2 className="text-2xl font-semibold text-center text-gray-700 dark:text-white">
-            Edu Era
-          </h2>
-
-          <p className="text-xl text-center text-gray-600 dark:text-gray-200">
+          <p className="text-3xl text-center text-gray-600 dark:text-gray-200">
             Welcome !
           </p>
 
-          <Link className="flex items-center justify-center mt-3 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <Link
+            onClick={handleGoogleSignIn}
+            className="flex items-center justify-center mt-3 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
             <div className="px-4 py-2">
               <svg className="w-6 h-6" viewBox="0 0 40 40">
                 <path
@@ -51,7 +110,10 @@ const Registration = () => {
               Sign in with Google
             </span>
           </Link>
-          <Link className="flex items-center justify-center mt-3 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <Link
+            onClick={handleGithubSignIn}
+            className="flex items-center justify-center mt-3 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
             <div className="px-4 py-2">
               <FaGithub className="w-6 h-6"></FaGithub>
             </div>
@@ -77,7 +139,7 @@ const Registration = () => {
             <div className="mt-4">
               <label
                 className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                for="LoggingUserName"
+                htmlFor="LoggingUserName"
               >
                 User Name
               </label>
@@ -91,7 +153,7 @@ const Registration = () => {
             <div className="mt-4">
               <label
                 className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                for="LoggingEmailAddress"
+                htmlFor="LoggingEmailAddress"
               >
                 Image URL
               </label>
@@ -105,7 +167,7 @@ const Registration = () => {
             <div className="mt-4">
               <label
                 className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                for="LoggingEmailAddress"
+                htmlFor="LoggingEmailAddress"
               >
                 Email Address
               </label>
@@ -116,12 +178,11 @@ const Registration = () => {
                 type="email"
               />
             </div>
-
             <div className="mt-4">
               <div className="flex justify-between">
                 <label
                   className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                  for="loggingPassword"
+                  htmlFor="loggingPassword"
                 >
                   Password
                 </label>
@@ -140,12 +201,12 @@ const Registration = () => {
                 type="password"
               />
             </div>
-
             <div className="mt-8">
               <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
                 Sign Up
               </button>
             </div>
+            <h1 className="text-red-600 text-center text-sm mt-2">{error}</h1>
           </form>
 
           <div className="flex items-center justify-between mt-4">
@@ -162,7 +223,6 @@ const Registration = () => {
                 </span>
               </Link>
             </div>
-
             <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
           </div>
         </div>

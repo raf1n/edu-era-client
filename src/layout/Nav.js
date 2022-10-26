@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const Nav = () => {
-  const [user, setUser] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
   return (
     <div className="navbar bg-base-100 px-10">
       <div className="navbar-start">
@@ -67,16 +68,16 @@ const Nav = () => {
             </label>
           </ul>
         </div>
-        <div className="flex items-center">
-          <Link to="/">
+        <div>
+          <Link className="flex items-center" to="/">
             <img
               src="https://cdn-icons-png.flaticon.com/512/174/174675.png"
               className="h-6 sm:h-9"
               alt="logo"
             />
-          </Link>
-          <Link to="/" className="btn btn-ghost normal-case text-xl">
-            Edu Era
+            <button to="/" className="btn btn-ghost normal-case text-xl">
+              Edu Era
+            </button>
           </Link>
         </div>
       </div>
@@ -126,13 +127,13 @@ const Nav = () => {
           <>
             <div
               className="avatar tooltip tooltip-left"
-              data-tip="Rahim Uddin Rafin"
+              data-tip={user?.displayName}
             >
               <div className="w-10 rounded-full">
-                <img src="https://placeimg.com/192/192/people" alt="avatar" />
+                <img src={user?.photoURL} alt="avatar" />
               </div>
             </div>
-            <Link to="/logout" className="btn btn-sm ml-3">
+            <Link onClick={logOut} className="btn btn-sm ml-3">
               Log Out
             </Link>
           </>

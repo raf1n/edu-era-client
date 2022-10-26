@@ -13,21 +13,21 @@ const CheckOut = () => {
   };
   return (
     <section>
-      <h1 class="text-3xl text-center font-semibold text-gray-800 capitalize lg:text-4xl">
-        <span class="underline decoration-blue-500">Check Out</span>
+      <h1 className="text-3xl text-center font-semibold text-gray-800 capitalize lg:text-4xl">
+        <span className="underline decoration-blue-500">Check Out</span>
       </h1>
       <div className="flex justify-center my-10">
         <div className="flex flex-col w-[90%] lg:w-[50%] max-w-6xl p-6 space-y-4 sm:p-10 bg-gray-50 text-gray-800">
           <h2 className="text-xl font-semibold">Premium Access Summary</h2>
           <ul className="flex flex-col divide-y divide-gray-300">
             <li className="flex flex-col py-6 sm:flex-row sm:justify-between">
-              <div className="flex w-full space-x-2 sm:space-x-4">
+              <div className="flex flex-col lg:flex-row w-full space-x-2 sm:space-x-4">
                 <img
                   className="flex-shrink-0  lg:w-36 lg:h-32 border-transparent rounded outline-none sm:w-32 sm:h-32 bg-gray-500"
                   src={img}
                   alt="course-logo"
                 />
-                <div className="flex flex-col justify-between w-full pb-4">
+                <div className="flex flex-col justify-between w-full mt-2 pb-4">
                   <div className="flex justify-between w-full pb-2 space-x-2">
                     <div className="space-y-1">
                       <h3 className="text-lg font-semibold leading-snug sm:pr-8">
@@ -85,22 +85,22 @@ const CheckOut = () => {
             </p>
             <p className="text-sm text-gray-600">Not including taxes</p>
           </div>
-          <div className="flex justify-end space-x-4">
+          <div className="flex lg:justify-end space-x-4">
             <Link to="/courses">
               <button
                 type="button"
                 className="btn btn-outline px-6 py-2 border rounded-md text-black"
               >
-                <span className="sr-only sm:not-sr-only">Back to Courses</span>
+                <span className="text-xs lg:text-base">Back to Courses</span>
               </button>
             </Link>
 
             <button
               onClick={handleCheckOut}
               type="button"
-              className="btn btn-outline px-6 py-2 border rounded-mdtext-black"
+              className="btn btn-outline px-6 py-2 border rounded-md text-black"
             >
-              <span>Checkout</span>
+              <span className="text-xs lg:text-base">Checkout</span>
             </button>
           </div>
         </div>
