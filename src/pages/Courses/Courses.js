@@ -25,7 +25,7 @@ const Courses = () => {
             <CoursesSideBar key={course.id} course={course}></CoursesSideBar>
           ))}
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-8 mt-4 lg:mt-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-5 mb-8 mt-4 lg:mt-0">
           {allCourse.map((course) => (
             <CoursesCards key={course.id} course={course}></CoursesCards>
           ))}

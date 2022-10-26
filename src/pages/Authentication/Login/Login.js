@@ -1,8 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../../contexts/AuthProvider";
 const Login = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/";
   const { googleSignIn, githubSignIn, login, setLoading } =
     useContext(AuthContext);
   const [error, setError] = useState("");
@@ -14,7 +17,10 @@ const Login = () => {
     login(email, password)
       .then((result) => {
         const user = result.user;
+        console.log(user);
+        form.reset();
         setError("");
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
@@ -157,7 +163,7 @@ const Login = () => {
 
             <div className="mt-8">
               <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
-                Sign Up
+                Sign In
               </button>
             </div>
             <h1 className="text-red-600 text-center text-sm mt-2">{error}</h1>
