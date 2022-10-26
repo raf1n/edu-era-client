@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
   return (
     <div className="navbar bg-base-100 px-10">
       <div className="navbar-start">
@@ -132,10 +132,14 @@ const Nav = () => {
                 <img src="https://placeimg.com/192/192/people" alt="avatar" />
               </div>
             </div>
-            <Link className="btn btn-sm ml-3">Log Out</Link>
+            <Link to="/logout" className="btn btn-sm ml-3">
+              Log Out
+            </Link>
           </>
         ) : (
-          <Link className="btn btn-sm ml-3">Login</Link>
+          <Link to="/login" className="btn btn-sm ml-3">
+            Login
+          </Link>
         )}
       </div>
     </div>

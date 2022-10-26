@@ -8,7 +8,7 @@ const Courses = () => {
   //   console.log(coursesCategory);
   const [allCourse, setAllCourse] = useState([]); //   console.log(coursesCategory);
   useEffect(() => {
-    fetch("http://localhost:5000/courses")
+    fetch("https://edu-era-server-side.vercel.app/courses")
       .then((res) => res.json())
       .then((data) => setAllCourse(data));
   }, []);
