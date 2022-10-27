@@ -20,7 +20,7 @@ const Courses = () => {
         <span className="underline decoration-blue-500">Courses</span>
       </h1>
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start lg:justify-evenly mt-6 lg:mt-10">
-        <div className="w-52">
+        <div className="w-52 mr-4 lg:mr-0">
           {coursesCategory.map((course) => (
             <CoursesSideBar key={course.id} course={course}></CoursesSideBar>
           ))}

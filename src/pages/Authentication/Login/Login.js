@@ -64,8 +64,8 @@ const Login = () => {
   };
   return (
     <section className="mt-4 mb-4">
-      <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-xl">
-        <div className="w-full px-6 py-4 md:px-8 lg:w-full">
+      <div className="flex w-[90%] lg:w-full  max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-xl">
+        <div className="w-full px-6 mt-5 py-4 md:px-8 h-[36em] lg:w-full">
           <h2 className="text-2xl font-semibold text-center text-gray-700 dark:text-white">
             Edu Era
           </h2>
