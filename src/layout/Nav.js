@@ -132,7 +132,7 @@ const Nav = () => {
       </div>
       <div className="navbar-end">
         <>
-          {user && user?.email && user?.uid ? (
+          {(user && user?.email) || (user && user?.uid) ? (
             <>
               <div
                 className="avatar tooltip tooltip-left"
