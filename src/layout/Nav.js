@@ -138,15 +138,15 @@ const Nav = () => {
                 className="avatar tooltip tooltip-left"
                 data-tip={user?.displayName}
               >
-                <div className="w-8 lg:w-10 rounded-full">
+                <div className="w-8 mr-2 lg:w-10 rounded-full">
                   {user?.photoURL ? (
                     <img src={user?.photoURL} alt="avatar" />
                   ) : (
-                    <FaUser className="w-6 lg:w-8 mt-2 ml-2 h-6"></FaUser>
+                    <FaUser className="w-6 lg:w-8 mt-2 ml-1 h-6"></FaUser>
                   )}
                 </div>
               </div>
-              <Link onClick={handleLogOut} className="btn btn-sm ml-3">
+              <Link onClick={handleLogOut} className="btn btn-sm">
                 Log Out
               </Link>
             </>

@@ -5,8 +5,7 @@ import CoursesSideBar from "../../components/CoursesSideBar/CoursesSideBar";
 
 const Courses = () => {
   const coursesCategory = useLoaderData();
-  //   console.log(coursesCategory);
-  const [allCourse, setAllCourse] = useState([]); //   console.log(coursesCategory);
+  const [allCourse, setAllCourse] = useState([]);
   useEffect(() => {
     fetch("https://edu-era-server-side.vercel.app/courses")
       .then((res) => res.json())

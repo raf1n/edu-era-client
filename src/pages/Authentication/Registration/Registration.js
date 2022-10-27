@@ -26,7 +26,6 @@ const Registration = () => {
         console.log(user);
         setError("");
         updateUserProfileInfo(name, imageURL);
-        console.log(user);
         setUser(result.user);
         toast.success("Your account have been created Successfully!", {
           duration: 4000,
@@ -141,10 +140,10 @@ const Registration = () => {
             <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
 
             <Link
-              to="/login"
+              to="/registration"
               className="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline"
             >
-              or login with email
+              or sign up with email
             </Link>
 
             <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>

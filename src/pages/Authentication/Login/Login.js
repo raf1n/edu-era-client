@@ -17,7 +17,6 @@ const Login = () => {
     login(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         setError("");
         if (user) {
           navigate(from, { replace: true });
@@ -35,7 +34,6 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
-        console.log(user);
         setError("");
         if (user) {
           navigate(from, { replace: true });
@@ -51,7 +49,6 @@ const Login = () => {
     githubSignIn()
       .then((result) => {
         const user = result.user;
-        console.log(user);
         setError("");
         if (user) {
           navigate(from, { replace: true });
