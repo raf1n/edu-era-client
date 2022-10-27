@@ -1,12 +1,17 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 
 const Registration = () => {
   const [error, setError] = useState("");
-  const { signUp, googleSignIn, githubSignIn, updateUserProfile } =
+  const { signUp, googleSignIn, githubSignIn, updateUserProfile, setUser } =
     useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handleRegistration = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -14,17 +19,22 @@ const Registration = () => {
     const imageURL = form.imageURL.value;
     const email = form.email.value;
     const password = form.password.value;
-    const profile = {
-      displayName: name,
-      photoURL: imageURL,
-    };
+
     signUp(email, password)
       .then((result) => {
         const user = result.user;
-        updateProfile(profile);
         console.log(user);
-        form.reset();
         setError("");
+        updateUserProfileInfo(name, imageURL);
+        console.log(user);
+        setUser(result.user);
+        toast.success("Your account have been created Successfully!", {
+          duration: 4000,
+          position: "top-center",
+        });
+        form.reset();
+        navigate(from, { replace: true });
+        window.location.reload();
       })
       .catch((err) => {
         console.error(err);
@@ -32,7 +42,11 @@ const Registration = () => {
       });
   };
 
-  const updateProfile = (profile) => {
+  const updateUserProfileInfo = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
     updateUserProfile(profile)
       .then(() => {})
       .catch((err) => {
@@ -45,6 +59,7 @@ const Registration = () => {
         const user = result.user;
         console.log(user);
         setError("");
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
@@ -58,13 +73,13 @@ const Registration = () => {
         const user = result.user;
         console.log(user);
         setError("");
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
         setError(err.message);
       });
   };
-
   return (
     <section className="mt-2 mb-4">
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-5xl">
@@ -186,10 +201,7 @@ const Registration = () => {
                 >
                   Password
                 </label>
-                <Link
-                  href="#"
-                  className="text-xs text-gray-500 dark:text-gray-300 hover:underline"
-                >
+                <Link className="text-xs text-gray-500 dark:text-gray-300 hover:underline">
                   Forget Password?
                 </Link>
               </div>

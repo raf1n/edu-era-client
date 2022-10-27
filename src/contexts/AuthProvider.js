@@ -24,34 +24,34 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
+  // sign in using google
   const googleSignIn = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
-
+  // sign in using github
   const githubSignIn = () => {
     setLoading(true);
     return signInWithPopup(auth, githubProvider);
   };
+  // profile info updating
   const updateUserProfile = (profile) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, profile);
   };
+  //  sign in with email and password
   const login = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-  const logOut = async () => {
+
+  const logOut = () => {
     setLoading(true);
-    try {
-      await signOut(auth);
-    } catch (err) {
-      console.error(err);
-    }
+    return signOut(auth);
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-
       setLoading(false);
     });
     return () => {

@@ -1,8 +1,9 @@
 import React from "react";
 import toast from "react-hot-toast";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 
 const CheckOut = () => {
+  const navigate = useNavigate();
   const checkOutCourseData = useLoaderData();
   const { name, img, price, mentor } = checkOutCourseData;
   const handleCheckOut = () => {
@@ -10,6 +11,7 @@ const CheckOut = () => {
       duration: 4000,
       position: "top-center",
     });
+    navigate("/");
   };
   return (
     <section>

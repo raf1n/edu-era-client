@@ -3,11 +3,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../../contexts/AuthProvider";
 const Login = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const from = location?.state?.from?.pathname || "/";
   const { googleSignIn, githubSignIn, login, setLoading } =
     useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const [error, setError] = useState("");
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -18,9 +18,10 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        form.reset();
         setError("");
-        navigate(from, { replace: true });
+        if (user) {
+          navigate(from, { replace: true });
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -36,6 +37,9 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         setError("");
+        if (user) {
+          navigate(from, { replace: true });
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -49,6 +53,9 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         setError("");
+        if (user) {
+          navigate(from, { replace: true });
+        }
       })
       .catch((err) => {
         console.error(err);
