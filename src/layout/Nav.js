@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
@@ -138,7 +139,11 @@ const Nav = () => {
                 data-tip={user?.displayName}
               >
                 <div className="w-10 rounded-full">
-                  <img src={user?.photoURL} alt="avatar" />
+                  {user?.photoURL ? (
+                    <img src={user?.photoURL} alt="avatar" />
+                  ) : (
+                    <FaUser className="w-8 mt-2 ml-2 h-6"></FaUser>
+                  )}
                 </div>
               </div>
               <Link onClick={handleLogOut} className="btn btn-sm ml-3">
