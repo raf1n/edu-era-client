@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import { toast } from "react-hot-toast";
 const Login = () => {
   const { googleSignIn, githubSignIn, login, setLoading } =
     useContext(AuthContext);
@@ -19,6 +20,7 @@ const Login = () => {
         const user = result.user;
         setError("");
         if (user) {
+          toast.success("You have logged in successfully");
           navigate(from, { replace: true });
         }
       })
@@ -36,6 +38,7 @@ const Login = () => {
         const user = result.user;
         setError("");
         if (user) {
+          toast.success("You have logged in successfully");
           navigate(from, { replace: true });
         }
       })
@@ -51,6 +54,7 @@ const Login = () => {
         const user = result.user;
         setError("");
         if (user) {
+          toast.success("You have logged in successfully");
           navigate(from, { replace: true });
         }
       })

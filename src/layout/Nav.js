@@ -1,13 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const Nav = () => {
+  const [theme, setTheme] = useState(false);
+
+  useEffect(() => {
+    if (theme === true) {
+      document.children[0].dataset.theme = "dark";
+    } else {
+      document.children[0].dataset.theme = "light";
+    }
+  }, [theme]);
   const { user, logOut } = useContext(AuthContext);
   const handleLogOut = () => {
     logOut()
-      .then(() => {})
+      .then(() => {
+        toast.success("You have logged out successfully");
+      })
       .catch((err) => {
         console.error(err);
       });
@@ -51,7 +64,7 @@ const Nav = () => {
               <Link to="/blog">Blog</Link>
             </li>
             <label className="swap swap-rotate">
-              <input type="checkbox" />
+              <input type="checkbox" onClick={() => setTheme(!theme)} />
               <div className="swap-on flex flex-row-reverse justify-center items-center">
                 <p>light</p>
                 <svg
@@ -104,7 +117,7 @@ const Nav = () => {
             <Link to="/blog">Blog</Link>
           </li>
           <label className="swap swap-rotate">
-            <input type="checkbox" />
+            <input onClick={() => setTheme(!theme)} type="checkbox" />
 
             <div className="swap-on flex flex-row-reverse justify-center items-center">
               <p>light</p>

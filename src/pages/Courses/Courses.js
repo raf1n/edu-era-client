@@ -14,7 +14,7 @@ const Courses = () => {
 
   return (
     <div>
-      <h1 className="text-3xl text-center font-semibold text-gray-800 capitalize lg:text-4xl">
+      <h1 className="text-3xl text-center font-semibold text-gray-500 capitalize lg:text-4xl">
         explore our <br /> awesome{" "}
         <span className="underline decoration-blue-500">Courses</span>
       </h1>

@@ -5,7 +5,7 @@ const CoursesCards = ({ course }) => {
   const { name, img, id, mentor, enrolled, rating } = course;
   return (
     <Link to={`/course/${id}`}>
-      <div className="card card-compact w-80 lg:w-96 bg-base-100 shadow-xl">
+      <div className="card card-compact w-80 bg-base-100 shadow-xl ">
         <figure>
           <img className="w-96 h-56" src={img} alt="Shoes" />
         </figure>

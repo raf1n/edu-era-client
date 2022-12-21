@@ -58,6 +58,7 @@ const Registration = () => {
         const user = result.user;
         console.log(user);
         setError("");
+        toast.success("You have logged in successfully");
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -72,6 +73,7 @@ const Registration = () => {
         const user = result.user;
         console.log(user);
         setError("");
+        toast.success("You have logged in successfully");
         navigate(from, { replace: true });
       })
       .catch((err) => {
